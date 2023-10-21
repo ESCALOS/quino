@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('guests', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->foreignIdFor(Table::class);
             $table->boolean('is_arrival')->default(false);
             $table->timestamps();
