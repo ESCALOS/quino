@@ -32,10 +32,6 @@ class GuestsRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->columns([
                 Tables\Columns\TextColumn::make('name')->label('Nombre'),
-                Tables\Columns\IconColumn::make('is_arrival')
-                ->icon(fn (string $state): string => $state ? 'heroicon-o-check-circle' : 'heroicon-o-x-circle')
-                ->color(fn (string $state): string => $state ? 'success' : 'danger')
-                ->label('¿Ha llegado?'),
             ])
             ->filters([
                 //

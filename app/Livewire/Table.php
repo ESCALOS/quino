@@ -3,13 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\Guest;
+use App\Models\Table as ModelsTable;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Table extends Component
 {
-    public $tableId;
-    public $tableNumber;
+    public ModelsTable $table;
 
     #[Computed]
     public function status() {
@@ -21,16 +22,19 @@ class Table extends Component
         if($this->arrivalGuests() < $this->total()) {
             return 'bg-primary-500';
         }
-
-
     }
     #[Computed]
     public function arrivalGuests() {
-        return Guest::where('table_id',$this->tableId)->where('is_arrival',true)->count();
+        return Guest::where('table_id',$this->table->id)->where('is_arrival',true)->count();
     }
     #[Computed]
     public function total() {
-        return Guest::where('table_id',$this->tableId)->count();
+        return Guest::where('table_id',$this->table->id)->count();
+    }
+
+    #[On('table-updated.{table.id}')]
+    public function refreshTable() {
+        $this->render();
     }
 
     public function render()
