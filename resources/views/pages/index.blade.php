@@ -16,7 +16,7 @@ on(['showGuests' => function($tableNumber){
 <x-app-layout>
     @volt
     <div>
-        <input type="text" class="w-full" wire:model.live='search'>
+        <input type="text" placeholder="Buscar al invitado..." class="w-full" wire:model.live='search'>
 
         <livewire:todo :search="$search">
 
